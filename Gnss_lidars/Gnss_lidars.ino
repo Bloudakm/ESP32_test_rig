@@ -27,7 +27,8 @@ LidarState lidars = IDLE;
 uint8_t readMiss = 0;
 
 // Lidar fake message
-const uint8_t versionMes[] = {0xa5, 0x03, 0x20, 0x0a};
+const uint8_t versionMes[] = {0xa5, 0x03, 0x20, 0x0a, 0x00, 0x00, 0x0E, 0xff, 0xff, 0xff, 0xff, 0xff, 0xf6, 0x06, 0x42, 0x00, 0x74, 0x26, 0x01, 0x00,
+  0x0b, 0x44}; // Checksum
 const uint8_t lidarMes[] = {
   0xa5, 0x03, 0x20, 0x01, 0x00, 0x00, // Start command
   0x0E, // Data length
@@ -36,6 +37,23 @@ const uint8_t lidarMes[] = {
 };
 
 // GNSS fake messages
+/* GNGGA format:
+  0 (Header) 	  --> $GNGGA 
+  1 (UTC time) 	--> 072446.00
+  2 (Lat) 	    --> 3130.5226316
+  3 (N/S) 	    --> N
+  4 (Long) 	    --> 12024.0937010
+  5 (E/W)		    --> E
+  6 (Quality)	  --> 4
+  7 (num sats)	--> 27
+  8 (HDOP)	    --> 0.5
+  9 (Alt.)	    --> 31.924
+  10 (Units)	  --> M
+  11 (Geiod. sep.)--> 0.000
+  12 (Units)	  --> M
+  13 (DGPS ID)	--> 2.0
+  14 (Checksum)	--> *44
+*/
 const char gngga[] = "$GNGGA,072446.00,3130.5226316,N,12024.0937010,E,4,27,0.5,31.924,M,0.000,M,2.0,*44";
 const char gngga2[] = "$GNGGA,072446.00,3130.5526316,N,12024.1237010,E,4,27,0.5,41.924,M,0.000,M,2.0,*44";
 
