@@ -134,7 +134,7 @@ void loop() {
 
   if (sendFlagLidar) {
     portENTER_CRITICAL(&timeLidarMux);
-    sendFlagGnss = false;
+    sendFlagLidar = false;
     portEXIT_CRITICAL(&timeLidarMux);
 
     handleLidarCommand();
